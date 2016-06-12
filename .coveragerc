@@ -1,0 +1,3 @@
+[run]
+source = zello_backend
+omit = zello_backend/test*
