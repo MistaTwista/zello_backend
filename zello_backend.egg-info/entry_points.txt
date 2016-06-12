@@ -1,0 +1,5 @@
+      [paste.app_factory]
+      main = zello_backend:main
+      [console_scripts]
+      initialize_zello_backend_db = zello_backend.scripts.initializedb:main
+      
