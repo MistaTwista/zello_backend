@@ -12,7 +12,7 @@ import datetime
 def sellings_view(request):
     page = int(request.params.get('page', 1))
     sellings = SellingRecordService.all(request)
-    return {'sellings': sellings}
+    return {'sellings': sellings.all()}
 
 
 @view_config(route_name='selling', renderer='json')

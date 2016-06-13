@@ -15,5 +15,14 @@ class Product(Base):
 
     selling = orm.relationship("Selling", back_populates="products")
 
+    def __json__(self, request):
+        return {
+            'selling_id': self.selling_id,
+            'name': self.name,
+            'price': self.price,
+            'quantity': self.quantity,
+            'created': self.created,
+        }
+
     def __repr__(self):
         return "<Product(name='%s')>" % self.name

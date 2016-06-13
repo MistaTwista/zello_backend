@@ -5,10 +5,6 @@ from ..models.selling import Selling
 class SellingRecordService(object):
 
 
-    def __json__(self, request):
-        return {'code': self.code}
-
-
     @classmethod
     def all(cls, request):
         query = request.dbsession.query(Selling)
