@@ -27,7 +27,7 @@ def custom_json_renderer():
         return str(obj)
 
     def decimal_adapter(obj, request):
-        return str(obj)
+        return float("{0:.2f}".format(obj))
 
     json_renderer = JSON()
     json_renderer.add_adapter(datetime.datetime, datetime_adapter)

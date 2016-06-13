@@ -14,8 +14,9 @@ class Selling(Base):
 
     def __json__(self, request):
         return {
+            'id': self.id,
             'code': self.code,
-            'summ': self.summ,
-            'created': self.created,
+            'sum': self.summ,
+            'date': self.created,
             'products': self.products,
         }
