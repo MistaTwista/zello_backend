@@ -22,6 +22,7 @@ requires = [
     'paginate==0.5.4', # pagination helpers
     'paginate_sqlalchemy==0.2.0',
     'psycopg2',
+    'marshmallow' #JSON serializer
     ]
 
 tests_require = [

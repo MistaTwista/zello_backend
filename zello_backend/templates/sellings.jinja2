@@ -1,0 +1,22 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+
+    {% if sellings %}
+        <h2>Sellings</h2>
+        <ul>
+            {% for entry in sellings %}
+                <li>
+                    <a href="{{ request.route_url('selling', id=entry.id, slug=entry.slug) }}">
+                        {{ entry.code }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No sellings found.</p>
+    {% endif %}
+    <p><a href="{{ request.route_url('sellings_action',action='create') }}">
+        Create a new blog entry</a></p>
+
+{% endblock %}
