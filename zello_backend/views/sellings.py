@@ -11,7 +11,7 @@ import datetime
 @view_config(route_name='sellings_json_', renderer='json')
 def sellings_view(request):
     sellings = SellingRecordService.all(request)
-    return {'sellings': sellings.all()}
+    return sellings.all()
 
 
 @view_config(route_name='selling_json', renderer='json')
@@ -22,13 +22,13 @@ def selling_view(request):
         return HTTPNotFound()
     return {'selling': selling}
 
-
-@view_config(route_name='sellings_action', match_param='action=create',
-             renderer='json')
-def selling_create(request):
-    selling = Selling()
-    form = SellingCreateForm(request.POST)
-    if request.method == 'POST':
-        form.populate_obj(selling)
-        request.dbsession.add(selling)
-        return {'selling': selling}
+# TODO: Zombie code
+# @view_config(route_name='sellings_action', match_param='action=create',
+#              renderer='json')
+# def selling_create(request):
+#     selling = Selling()
+#     form = SellingCreateForm(request.POST)
+#     if request.method == 'POST':
+#         form.populate_obj(selling)
+#         request.dbsession.add(selling)
+#         return {'selling': selling}

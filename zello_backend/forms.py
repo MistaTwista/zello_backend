@@ -2,6 +2,7 @@ from wtforms import (
     Form,
     StringField,
     TextAreaField,
+    DateField,
     HiddenField,
     validators,
 )
@@ -21,8 +22,9 @@ class BlogUpdateForm(BlogCreateForm):
 
 
 class SellingCreateForm(Form):
-    title = StringField('code', [validators.Length(min=1, max=255)],
+    code = StringField('code', [validators.Length(min=1, max=255)],
                         filters=[strip_filter])
+    date = DateField('date')
 
 
 class SellingUpdateForm(SellingCreateForm):
