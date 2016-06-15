@@ -1,8 +1,10 @@
 from pyramid.view import view_config, notfound_view_config
 from pyramid.httpexceptions import HTTPFound, HTTPNotFound
 from ..models.selling import Selling
+from ..models.product import Product
 from ..services.selling_record import SellingRecordService
 from ..forms import SellingCreateForm, SellingUpdateForm
+from ..forms import ProductCreateForm, ProductUpdateForm
 from pyramid.renderers import JSON
 import datetime
 
@@ -22,20 +24,16 @@ def sellings_view(request):
 
 
 @view_config(route_name='selling_json', renderer='json')
+@view_config(route_name='selling_json', match_param='action=create',
+             renderer='json')
 def selling_view(request):
     selling_id = int(request.matchdict.get('selling_id', -1))
     selling = SellingRecordService.by_id(selling_id, request)
+    product = Product()
+    form = ProductCreateForm(request.POST, obj=product)
+    if request.method == 'POST' and form.validate():
+        form.populate_obj(product)
+        request.dbsession.add(product)
     if not selling:
         return HTTPNotFound()
     return {'selling': selling}
-
-# TODO: Zombie code
-# @view_config(route_name='sellings_action', match_param='action=create',
-#              renderer='json')
-# def selling_create(request):
-#     selling = Selling()
-#     form = SellingCreateForm(request.POST)
-#     if request.method == 'POST':
-#         form.populate_obj(selling)
-#         request.dbsession.add(selling)
-#         return {'selling': selling}

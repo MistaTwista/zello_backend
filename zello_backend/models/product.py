@@ -10,7 +10,7 @@ class Product(Base):
     selling_id = sa.Column(sa.Integer, sa.ForeignKey('selling.id'))
     name = sa.Column(sa.Unicode(255), unique=False, nullable=False)
     price = sa.Column(sa.Numeric(12, 2), nullable=False)
-    quantity = sa.Column(sa.Float)
+    quantity = sa.Column(sa.Float, nullable=False)
     created = sa.Column(sa.DateTime, default=datetime.datetime.utcnow)
 
     selling = orm.relationship("Selling", back_populates="products")

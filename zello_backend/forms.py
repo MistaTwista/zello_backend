@@ -3,6 +3,8 @@ from wtforms import (
     StringField,
     TextAreaField,
     DecimalField,
+    FloatField,
+    IntegerField,
     DateField,
     HiddenField,
     validators,
@@ -30,4 +32,16 @@ class SellingCreateForm(Form):
 
 
 class SellingUpdateForm(SellingCreateForm):
+    id = HiddenField()
+
+
+class ProductCreateForm(Form):
+    name = StringField('name', [validators.Length(min=1, max=255)],
+                        filters=[strip_filter])
+    selling_id = IntegerField('selling_id')
+    quantity = FloatField('quantity')
+    price = DecimalField('price')
+
+
+class ProductUpdateForm(ProductCreateForm):
     id = HiddenField()
