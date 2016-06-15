@@ -9,7 +9,7 @@ class Selling(Base):
     __tablename__ = 'selling'
     id = sa.Column(sa.Integer, primary_key=True)
     code = sa.Column(sa.Unicode(255), unique=True, nullable=False)
-    summ = sa.Column(sa.Numeric(12, 2), nullable=False)
+    summ = sa.Column(sa.Numeric(12, 2), default=0)
     created = sa.Column(sa.DateTime, default=datetime.datetime.utcnow)
     products = orm.relationship("Product", order_by="Product.id")
 
@@ -28,7 +28,7 @@ class Selling(Base):
         return {
             'id': self.id,
             'code': self.code,
-            'sum': self.summ,
+            'summ': self.summ,
             'date': self.created,
             'products': self.products,
         }

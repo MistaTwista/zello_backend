@@ -2,6 +2,7 @@ from wtforms import (
     Form,
     StringField,
     TextAreaField,
+    DecimalField,
     DateField,
     HiddenField,
     validators,
@@ -24,7 +25,8 @@ class BlogUpdateForm(BlogCreateForm):
 class SellingCreateForm(Form):
     code = StringField('code', [validators.Length(min=1, max=255)],
                         filters=[strip_filter])
-    date = DateField('date')
+    # created = DateField('created')
+    # summ = DecimalField('summ')
 
 
 class SellingUpdateForm(SellingCreateForm):

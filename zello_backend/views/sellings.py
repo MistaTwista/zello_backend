@@ -9,7 +9,14 @@ import datetime
 
 @view_config(route_name='sellings_json', renderer='json')
 @view_config(route_name='sellings_json_', renderer='json')
+@view_config(route_name='sellings_json', match_param='action=create',
+             renderer='json')
 def sellings_view(request):
+    selling = Selling()
+    form = SellingCreateForm(request.POST, obj=selling)
+    if request.method == 'POST' and form.validate():
+        form.populate_obj(selling)
+        request.dbsession.add(selling)
     sellings = SellingRecordService.all(request)
     return sellings.all()
 

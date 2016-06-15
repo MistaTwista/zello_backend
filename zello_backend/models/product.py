@@ -17,6 +17,7 @@ class Product(Base):
 
     def __json__(self, request):
         return {
+            'id': self.id,
             'selling_id': self.selling_id,
             'name': self.name,
             'price': self.price,
