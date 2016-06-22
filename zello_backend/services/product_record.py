@@ -4,6 +4,7 @@ from ..models.product import Product
 
 class ProductRecordService(object):
 
+
     @classmethod
     def all(cls, request):
         query = request.dbsession.query(Product)
@@ -14,6 +15,12 @@ class ProductRecordService(object):
     def by_id(cls, _id, request):
         query = request.dbsession.query(Product)
         return query.get(_id)
+
+    @classmethod
+    def delete_by_id(cls, _id, request):
+        query = request.dbsession.query(Product)
+        # session.delete(jack)
+        return query.delete(_id)
 
 
     @classmethod

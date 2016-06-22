@@ -11,7 +11,9 @@ class Selling(Base):
     code = sa.Column(sa.Unicode(255), unique=True, nullable=False)
     summ = sa.Column(sa.Numeric(12, 2), default=0)
     created = sa.Column(sa.DateTime, default=datetime.datetime.utcnow)
-    products = orm.relationship("Product", order_by="Product.id")
+    products = orm.relationship( "Product", order_by="Product.id",
+        back_populates="selling",
+        cascade="all, delete, delete-orphan")
 
 
     def __repr__(self):

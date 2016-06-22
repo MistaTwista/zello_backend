@@ -5,5 +5,6 @@ def includeme(config):
     config.add_route('blog_action', '/blog/{action}')
     config.add_route('auth', '/sign/{action}')
     config.add_route('sellings_json', '/sellings')
-    config.add_route('sellings_json_', '/sellings/')
     config.add_route('selling_json', '/sellings/{selling_id}')
+    config.add_route('products_json', '/products')
+    config.add_route('product_json', '/products/{product_id}')
